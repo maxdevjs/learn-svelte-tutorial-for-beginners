@@ -1,23 +1,9 @@
 <script>
-  let firstName = "Teq";
-  let lastName = "Tim";
-  let beltColour = "black";
-
-  // Reactive value
-  $: fullName = `${firstName} ${lastName}`;
-  // Reactive statement
-  $: {
-    console.log(beltColour);
-    console.log(fullName);
-  }
-
-  const handleClick = () => {
-    beltColour = "orange";
-  };
-
-  const handleInput = e => {
-    beltColour = e.target.value;
-  };
+  let people = [
+    { name: 'Tim', beltColour: 'black', age: 11, id: 1 },
+    {name:'Teq',beltColour:'orange',age:8,id:2},
+    { name: 'Dudu', beltColour: 'brown', age: 12, id: 3 }
+  ];
 </script>
 
 <style>
@@ -28,23 +14,19 @@
     margin: 0 auto;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
     }
   }
 </style>
-
 <main>
-  <p style="color: {beltColour}">{fullName} - {beltColour} belt</p>
-  <input type="text" bind:value={firstName} />
-  <input type="text" bind:value={lastName} />
-  <input type="text" bind:value={beltColour} onfocus="this.select();" />
+  {#each people as person (person.id)}
+    <div style="color: {person.beltColour};">
+      <h4>{person.name}</h4>
+      <p>{person.age} yo - {person.beltColour} belt</p>
+    </div>
+  {:else}
+    <p>There are no people to show...</p>
+  {/each}
 </main>
