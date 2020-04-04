@@ -4,6 +4,13 @@
     {name:'Teq',beltColour:'orange',age:8,id:2},
     { name: 'Dudu', beltColour: 'brown', age: 12, id: 3 }
   ];
+
+  const handleClick = (e, id) => {
+    // Check also
+    // https://love2dev.com/blog/javascript-remove-from-array/
+    people = people.filter((person) => person.id != id);
+    console.log(e);
+  };
 </script>
 
 <style>
@@ -25,6 +32,7 @@
     <div style="color: {person.beltColour};">
       <h4>{person.name}</h4>
       <p>{person.age} yo - {person.beltColour} belt</p>
+      <button on:click={(e) => handleClick(e, person.id)}>delete</button>
     </div>
   {:else}
     <p>There are no people to show...</p>
