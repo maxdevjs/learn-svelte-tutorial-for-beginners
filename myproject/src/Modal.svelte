@@ -5,15 +5,15 @@
   // self - only fires the event if the clicked element is the target
   // ...
 
-  export let message = 'deafult value'; // passed as a prop
-  export let showModal = false;
-  export let isPromo = false;
+  export let showModal = false; // passed as a prop
+  export let isPromo = false; // passed as a prop
 </script>
 
 {#if showModal}
   <div class="backdrop" class:promo={isPromo} on:click|self>
     <div class="modal">
-      <a href="http://localhost:5000/promo"><p>{message}</p></a>
+      <slot name="title"></slot>
+      <slot></slot>
       <!-- <p>{message}</p> -->
       <!-- {#if isPromo}
         <p>There is our promo</p>

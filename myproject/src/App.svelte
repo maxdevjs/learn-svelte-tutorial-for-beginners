@@ -31,17 +31,28 @@
   let firstTime = true;
 
   const toggleModal = () => {
-    firstTime = false;
+    // firstTime = false;
     showModal = !showModal;
   }
 
 </script>
 
-<Modal {showModal} {message} isPromo={isPromo} on:click={toggleModal} />
+<Modal {showModal} isPromo={isPromo} on:click={toggleModal}>
+  <!-- <h3>Add a new Master</h3> -->
+  <form>
+    <!-- (label[for=]+input[id=][placeholder=])*{} -->
+    <label for="name">Name:</label><input type="text" id="name" placeholder="Name">
+    <label for="belt">Belt:</label><input type="text" id="belt" placeholder="Belt Color">
+    <button>Add Master</button>
+  </form>
+  <div slot="title">
+    <h3>Add a new Master</h3>
+  </div>
+</Modal>
 
 <main>
   {#if firstTime}
-    <button class="modal" on:click|once={toggleModal}>Open Modal</button>
+    <button class="modal" on:click={toggleModal}>Open Modal</button>
   {/if}
   {#each people as person (person.id)}
     <div style="color: {person.beltColour};">
