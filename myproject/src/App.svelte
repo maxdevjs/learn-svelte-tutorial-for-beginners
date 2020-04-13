@@ -28,31 +28,21 @@
   messageBuild();
 
   let showModal = false;
+  let firstTime = true;
 
   const toggleModal = () => {
-    return showModal = !showModal;
+    firstTime = false;
+    showModal = !showModal;
   }
+
 </script>
 
 <Modal {showModal} {message} isPromo={isPromo} on:click={toggleModal} />
 
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>
-
 <main>
-  <button on:click={toggleModal}>Open Modal</button>
+  {#if firstTime}
+    <button class="modal" on:click|once={toggleModal}>Open Modal</button>
+  {/if}
   {#each people as person (person.id)}
     <div style="color: {person.beltColour};">
       <h4>{person.name}</h4>
@@ -70,3 +60,18 @@
     <p>There are no people to show...</p>
   {/each}
 </main>
+
+<style>
+  main {
+    text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+    }
+  }
+</style>
