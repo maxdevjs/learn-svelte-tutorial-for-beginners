@@ -1,9 +1,16 @@
 <script>
   let showModal = true;
+  let isPromo = true;
 </script>
 
 {#if showModal}
+  <div class="backdrop" class:promo={isPromo}>
     <div class="modal">
+      {#if isPromo}
+        <p>There is our promo</p>
+      {:else}
+        <p>Sign up for offers</p>
+      {/if}
     </div>
   </div>
 {/if}
