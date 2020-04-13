@@ -42,6 +42,13 @@
   {#each people as person (person.id)}
     <div style="color: {person.beltColour};">
       <h4>{person.name}</h4>
+      {#if person.beltColour === 'black'}
+        <p><strong>MASTER NINJA</strong></p>
+      {:else if person.beltColour === 'orange'}
+        <p><u>MASTER OF MASTERS</u></p>
+      {:else}
+        <p><i>MASTER ANYWAY</i></p>
+      {/if}
       <p>{person.age} yo - {person.beltColour} belt</p>
       <button on:click={(e) => handleClick(e, person.id)}>delete</button>
     </div>
