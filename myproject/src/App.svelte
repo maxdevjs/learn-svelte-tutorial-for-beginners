@@ -14,9 +14,21 @@
     console.log(e);
   };
 
+  let isPromo = true;
+  let message = "";
+
+  const messageBuild = () => {
+    if (isPromo) {
+      message = "There is our promo";
+    } else {
+      message = "Sign up for offers";
+    }
+  }
+
+  messageBuild();
 </script>
 
-<Modal />
+<Modal message={message} isPromo={isPromo} />
 
 <style>
   main {
