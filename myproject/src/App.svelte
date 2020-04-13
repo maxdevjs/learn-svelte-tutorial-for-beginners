@@ -26,9 +26,15 @@
   }
 
   messageBuild();
+
+  let showModal = false;
+
+  const toggleModal = () => {
+    return showModal = !showModal;
+  }
 </script>
 
-<Modal message={message} isPromo={isPromo} />
+<Modal {showModal} {message} isPromo={isPromo} on:click={toggleModal} />
 
 <style>
   main {
@@ -46,6 +52,7 @@
 </style>
 
 <main>
+  <button on:click={toggleModal}>Open Modal</button>
   {#each people as person (person.id)}
     <div style="color: {person.beltColour};">
       <h4>{person.name}</h4>
