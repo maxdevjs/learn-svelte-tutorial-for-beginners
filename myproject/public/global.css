@@ -82,3 +82,7 @@ button {
 	background: white;
 	box-shadow: orangered 1px 1px;
 }
+
+button.modal {
+	width: 70%;
+}
