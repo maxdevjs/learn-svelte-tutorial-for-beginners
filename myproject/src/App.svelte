@@ -1,5 +1,6 @@
 <script>
   import Modal from './Modal.svelte';
+  import AddMasterForm from './AddMasterForm.svelte';
 
   let people = [
     { name: 'Tim', beltColour: 'black', age: 11, id: 1 },
@@ -39,14 +40,10 @@
 
 <Modal {showModal} isPromo={isPromo} on:click={toggleModal}>
   <!-- <h3>Add a new Master</h3> -->
-  <form>
-    <!-- (label[for=]+input[id=][placeholder=])*{} -->
-    <label for="name">Name:</label><input type="text" id="name" placeholder="Name">
-    <label for="belt">Belt:</label><input type="text" id="belt" placeholder="Belt Color">
-    <button>Add Master</button>
-  </form>
+  
   <div slot="title">
     <h3>Add a new Master</h3>
+    <AddMasterForm />
   </div>
 </Modal>
 
