@@ -1,16 +1,15 @@
 <script>
+  export let message = 'deafult value'; // passed as a prop
   let showModal = true;
-  let isPromo = true;
 </script>
 
 {#if showModal}
   <div class="backdrop" class:promo={isPromo}>
     <div class="modal">
-      {#if isPromo}
+      <p>{message}</p>
         <p>There is our promo</p>
       {:else}
         <p>Sign up for offers</p>
-      {/if}
     </div>
   </div>
 {/if}
