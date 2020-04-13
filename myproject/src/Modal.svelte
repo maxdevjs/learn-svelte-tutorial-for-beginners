@@ -30,4 +30,9 @@
     text-align: center;
     background: white;
   }
+
+  .promo .modal {
+    background: crimson;
+    color: white;
+  }
 </style>
