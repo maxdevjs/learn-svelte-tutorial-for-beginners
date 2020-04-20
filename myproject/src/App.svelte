@@ -36,6 +36,11 @@
     showModal = !showModal;
   }
 
+  const addPerson = (e) => {
+    const person = e.detail;
+    people = [person, ...people];
+    showModal = false;
+  }
 </script>
 
 <Modal {showModal} isPromo={isPromo} on:click={toggleModal}>
@@ -43,7 +48,7 @@
   
   <div slot="title">
     <h3>Add a new Master</h3>
-    <AddMasterForm />
+    <AddMasterForm on:addPerson={addPerson} />
   </div>
 </Modal>
 
@@ -62,6 +67,7 @@
         <p><i>MASTER ANYWAY</i></p>
       {/if}
       <p>{person.age} yo - {person.beltColour} belt</p>
+
       <button on:click={(e) => handleClick(e, person.id)}>delete</button>
     </div>
   {:else}
