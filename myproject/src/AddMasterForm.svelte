@@ -2,12 +2,14 @@
   let name;
   let beltColour;
   let age;
-  let fighting = false;
-  let sneaking = false;
-  let running = false;
+  // let fighting = false;
+  // let sneaking = false;
+  // let running = false;
+
+  let skills = [];
 
   const handleSubmit = () => {
-    console.log(name, beltColour, age, fighting, sneaking, running);
+    console.log(name, beltColour, age, skills);
   }
 </script>
 
@@ -16,16 +18,21 @@
     <label for="name">Name:</label>
     <input type="text" id="name" placeholder="Name" bind:value={name}>
 
-    <label for="belt">Belt:</label>
-    <input type="text" id="belt" placeholder="Belt Colour" bind:value={beltColour}>
-
     <label for="age">Age:</label>
     <input type="number" id="age" placeholder="Age" bind:value={age}>
 
     <label>Skills:</label>
-    <input type="checkbox" bind:checked={fighting}>fighting<br>
-    <input type="checkbox" bind:checked={sneaking}>sneaking<br>
-    <input type="checkbox" bind:checked={running}>running<br>
+    <input type="checkbox" bind:group={skills} value="fighting">fighting<br>
+    <input type="checkbox" bind:group={skills} value="sneaking">sneaking<br>
+    <input type="checkbox" bind:group={skills} value="running">running<br>
+
+    <label>Belt Colour:</label>
+    <select bind:value={beltColour}>
+      <option value="black">black</option>
+      <option value="orange">orange</option>
+      <option value="brown">brown</option>
+      <option value="white">white</option>
+    </select>
 
     <button>Add Master</button>
   </form>
