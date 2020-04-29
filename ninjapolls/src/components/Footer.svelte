@@ -10,5 +10,6 @@
 
   .copyright {
     color: #aaa;
+    font-size: 14px;
   }
 </style>
