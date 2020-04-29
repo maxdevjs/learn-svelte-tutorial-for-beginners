@@ -10,7 +10,7 @@
 
 <Header />
 <main>
-	<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos at necessitatibus consequuntur praesentium asperiores consequatur nam corrupti. Dolorum dignissimos iusto, repudiandae qui culpa eos quod, nulla eligendi id sed odio.</p>
+	<Tabs {activeItem} {items} />
 </main>
 <Footer />
 
