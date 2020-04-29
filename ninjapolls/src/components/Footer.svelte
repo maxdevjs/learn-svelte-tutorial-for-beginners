@@ -9,5 +9,6 @@
   }
 
   .copyright {
+    color: #aaa;
   }
 </style>
