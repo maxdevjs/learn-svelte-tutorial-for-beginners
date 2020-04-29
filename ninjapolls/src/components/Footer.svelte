@@ -11,5 +11,6 @@
   .copyright {
     color: #aaa;
     font-size: 14px;
+    display: inline-block;
   }
 </style>
