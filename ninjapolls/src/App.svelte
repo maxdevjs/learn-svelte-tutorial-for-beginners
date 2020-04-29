@@ -4,6 +4,7 @@
 
 	// tabs
 	let items = ['Current Polls', 'Add New Poll'];
+	let activeItem = 'Current Polls';
 </script>
 
 <Header />
