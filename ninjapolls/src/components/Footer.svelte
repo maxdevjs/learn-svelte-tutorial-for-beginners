@@ -3,4 +3,8 @@
 </footer>
 
 <style>
+  footer {
+    padding: 40px;
+    text-align: center;
+  }
 </style>
