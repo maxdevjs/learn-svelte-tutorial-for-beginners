@@ -1,6 +1,9 @@
 <script>
 	import Header from './components/Header.svelte';
 	import Footer from './components/Footer.svelte';
+
+	// tabs
+	let items = ['Current Polls', 'Add New Poll'];
 </script>
 
 <Header />
