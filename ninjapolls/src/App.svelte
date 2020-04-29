@@ -21,7 +21,7 @@
 	{#if activeItem === 'Current Polls'}
 		<p>Poll list component here</p>
 	{:else if activeItem === 'Add New Poll'}
-		<p>New Poll from component here</p>
+		<CreatePollForm />
 	{/if}
 </main>
 <Footer />
