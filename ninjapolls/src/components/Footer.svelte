@@ -7,4 +7,7 @@
     padding: 40px;
     text-align: center;
   }
+
+  .copyright {
+  }
 </style>
