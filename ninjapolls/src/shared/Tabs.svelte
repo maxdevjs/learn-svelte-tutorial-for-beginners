@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   export let items;
   export let activeItem;
 </script>
