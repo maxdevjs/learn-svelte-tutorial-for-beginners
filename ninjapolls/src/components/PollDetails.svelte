@@ -1,9 +1,8 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
   import Card from '../shared/Card.svelte';
+  import PollStore from '../stores/PollStore.js';
 
   export let poll;
-  const dispatch = createEventDispatcher();
 
   let borderWidthA;
   let borderWidthB;
@@ -40,7 +39,19 @@
 
   // handling votes
   const voteHandle = (option, id) => {
-    dispatch('vote', {option, id});
+    PollStore.update(currentPolls => {
+      let copiedPolls = [...currentPolls];
+      let upvotedPoll = copiedPolls.find((poll) => poll.id === id);
+      if (option === 'a') {
+        upvotedPoll.votesA++;
+      }
+      if (option === 'b') {
+        upvotedPoll.votesB++;
+      }
+      
+      return copiedPolls;
+    });
+
     setBorder();
   };
 
