@@ -5,13 +5,46 @@
   export let poll;
   const dispatch = createEventDispatcher();
 
+  let borderWidthA;
+  let borderWidthB;
+  let borderStyleA = 'solid';
+  let borderStyleB = 'solid';
+  const borderColorA = '#d91b42';
+  const borderColorB = '#45c496';
+  const oneToSix = `1px 1px 1px 6px`;
+  const oneToThree = `1px 1px 1px 3px`;
+
+  const setBorder = () => {
+    if (poll.votesA > poll.votesB) {
+      borderWidthA = oneToSix;
+      borderWidthB = oneToThree;
+    } else if (poll.votesA < poll.votesB) {
+      borderWidthA = oneToThree;
+      borderWidthB = oneToSix;
+    } else if (poll.votesA === poll.votesB) {
+      borderWidthA = oneToSix;
+      borderWidthB = oneToSix;
+      if (poll.votesA === 0 ) {
+        borderWidthA = oneToSix;
+      }
+      if (poll.votesB === 0 ) {
+        borderWidthB = oneToSix;
+      }
+    }
+  };
+
   // reactive values
   $: totalVotes = poll.votesA + poll.votesB;
+  $: percentA = Math.floor(100 / totalVotes * poll.votesA);
+  $: percentB = Math.floor(100 / totalVotes * poll.votesB);
 
   // handling votes
   const voteHandle = (option, id) => {
     dispatch('vote', {option, id});
+    setBorder();
   };
+
+  setBorder();
 </script>
 
 <Card>
@@ -19,11 +52,12 @@
     <h3>{ poll.question }</h3>
     <p>Total votes: { totalVotes }</p>
     <div class="answer" on:click={() => voteHandle('a', poll.id)}>
-      <div class="percent percent-a"></div>
+      <div class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
       <span>{ poll.answerA } ({ poll.votesA } votes)</span>
     </div>
     <div class="answer" on:click={() => voteHandle('b', poll.id)}>
-      <div class="percent percent-b"></div>
+      <div class="percent percent-b" style="width: {percentB}%;
+    border-width: {borderWidthB}; border-color: {borderColorB}; border-style: {borderStyleB};"></div>
       <span>{ poll.answerB } ({ poll.votesB } votes)</span>
     </div>
   </div>
@@ -52,5 +86,21 @@
   span{
     display: inline-block;
     padding: 10px 20px;
+  }
+
+  .percent {
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+  }
+
+  .percent-a {
+    /* border-left: 4px solid #d91b42; */
+    background: rgba(217, 27, 66, 0.2);
+  }
+
+  .percent-b {
+    /* border-left: 4px solid #45c496; */
+    background: rgba(79, 196, 150, 0.2);
   }
 </style>
