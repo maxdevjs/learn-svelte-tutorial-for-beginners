@@ -2,6 +2,7 @@
   import Card from '../shared/Card.svelte';
   import PollStore from '../stores/PollStore.js';
   import Button from '../shared/Button.svelte';
+  import { fade, slide, scale } from 'svelte/transition';
 
   export let poll;
 
@@ -78,11 +79,11 @@
       <h3>{ poll.question }</h3>
       <p>Total votes: { totalVotes }</p>
       <div class="answer" on:click={() => voteHandle('a', poll.id)}>
-        <div class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
+        <div transition:scale class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
         <span>{ poll.answerA } ({ poll.votesA } votes)</span>
       </div>
       <div class="answer" on:click={() => voteHandle('b', poll.id)}>
-        <div class="percent percent-b" style="width: {percentB}%;
+        <div transition:slide={{direction: 'left'}} class="percent percent-b" style="width: {percentB}%;
       border-width: {borderWidthB}; border-color: {borderColorB}; border-style: {borderStyleB};"></div>
         <span>{ poll.answerB } ({ poll.votesB } votes)</span>
       </div>

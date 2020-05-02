@@ -1,3 +1,16 @@
+# Transitions
+
+[Transitions / The transition directive • Svelte Tutorial](https://svelte.dev/tutorial/transition)
+
+[Transitions / Custom CSS transitions • Svelte Tutorial](https://svelte.dev/tutorial/custom-css-transitions)
+
+[Svelte Tutorials Learning Notes: Transitions](https://dev.to/ekafyi/svelte-tutorials-learning-notes-transitions-2jd2)
+
+[sveltejs/svelte-transitions-slide](https://github.com/sveltejs/svelte-transitions-slide)
+
+[Animations / The animate directive • Svelte Tutorial](https://svelte.dev/tutorial/animate)
+
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
