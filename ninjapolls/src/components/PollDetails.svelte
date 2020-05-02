@@ -1,6 +1,7 @@
 <script>
   import Card from '../shared/Card.svelte';
   import PollStore from '../stores/PollStore.js';
+  import Button from '../shared/Button.svelte';
 
   export let poll;
 
@@ -56,22 +57,42 @@
   };
 
   setBorder();
+
+  const deletePoll = (id) => {
+    PollStore.update(currentPolls => {
+      // let copiedPolls = [...currentPolls];
+      // // console.log(copiedPolls)
+      // let pollToDelete = copiedPolls.find((poll) => poll.id === id);
+      // // console.log(pollToDelete);
+      // return copiedPolls.filter(p => p.id !== pollToDelete.id);
+
+      return currentPolls.filter(p => p.id !== id);
+    });
+  };
 </script>
 
 <Card>
-  <div class="poll">
-    <h3>{ poll.question }</h3>
-    <p>Total votes: { totalVotes }</p>
-    <div class="answer" on:click={() => voteHandle('a', poll.id)}>
-      <div class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
-      <span>{ poll.answerA } ({ poll.votesA } votes)</span>
+  <!-- <form on:submit|preventDefault={deletePoll(poll.id)}> -->
+  <!-- <form on:submit|preventDefault> -->
+    <div class="poll">
+      <h3>{ poll.question }</h3>
+      <p>Total votes: { totalVotes }</p>
+      <div class="answer" on:click={() => voteHandle('a', poll.id)}>
+        <div class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
+        <span>{ poll.answerA } ({ poll.votesA } votes)</span>
+      </div>
+      <div class="answer" on:click={() => voteHandle('b', poll.id)}>
+        <div class="percent percent-b" style="width: {percentB}%;
+      border-width: {borderWidthB}; border-color: {borderColorB}; border-style: {borderStyleB};"></div>
+        <span>{ poll.answerB } ({ poll.votesB } votes)</span>
+      </div>
+      <div>
+      <!-- <div on:click={() => deletePoll(poll.id)}>Delete Poll</div> -->
+      <div class="delete">
+        <Button flat="true" on:click={() => deletePoll(poll.id)}>Delete Poll</Button>
+      </div>
     </div>
-    <div class="answer" on:click={() => voteHandle('b', poll.id)}>
-      <div class="percent percent-b" style="width: {percentB}%;
-    border-width: {borderWidthB}; border-color: {borderColorB}; border-style: {borderStyleB};"></div>
-      <span>{ poll.answerB } ({ poll.votesB } votes)</span>
-    </div>
-  </div>
+  <!-- </form> -->
 </Card>
 
 <style>
@@ -113,5 +134,10 @@
   .percent-b {
     /* border-left: 4px solid #45c496; */
     background: rgba(79, 196, 150, 0.2);
+  }
+
+  .delete {
+    margin-top: 30px;
+    text-align: center; 
   }
 </style>
