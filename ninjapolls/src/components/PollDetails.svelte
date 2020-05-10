@@ -4,6 +4,8 @@
   import Button from '../shared/Button.svelte';
   import { fade, slide, scale } from 'svelte/transition';
 
+  import { tweened } from 'svelte/motion';
+
   export let poll;
 
   let borderWidthA;
@@ -36,8 +38,15 @@
 
   // reactive values
   $: totalVotes = poll.votesA + poll.votesB;
-  $: percentA = Math.floor(100 / totalVotes * poll.votesA);
-  $: percentB = Math.floor(100 / totalVotes * poll.votesB);
+  $: percentA = Math.floor(100 / totalVotes * poll.votesA) || 0;
+  $: percentB = Math.floor(100 / totalVotes * poll.votesB) || 0;
+
+  // tweened percentages
+  const tweenedPercentageA = tweened(0);
+  const tweenedPercentageB = tweened(0);
+  $: tweenedPercentageA.set(percentA);
+  $: tweenedPercentageB.set(percentB);
+  $: console.log($tweenedPercentageA, $tweenedPercentageB);
 
   // handling votes
   const voteHandle = (option, id) => {
@@ -79,11 +88,11 @@
       <h3>{ poll.question }</h3>
       <p>Total votes: { totalVotes }</p>
       <div class="answer" on:click={() => voteHandle('a', poll.id)}>
-        <div transition:scale class="percent percent-a" style="width:{percentA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
+        <div transition:scale class="percent percent-a" style="width:{$tweenedPercentageA}%; border-width: {borderWidthA}; border-color: {borderColorA}; border-style: {borderStyleA};"></div>
         <span>{ poll.answerA } ({ poll.votesA } votes)</span>
       </div>
       <div class="answer" on:click={() => voteHandle('b', poll.id)}>
-        <div transition:slide={{direction: 'left'}} class="percent percent-b" style="width: {percentB}%;
+        <div transition:slide={{direction: 'left'}} class="percent percent-b" style="width: {$tweenedPercentageB}%;
       border-width: {borderWidthB}; border-color: {borderColorB}; border-style: {borderStyleB};"></div>
         <span>{ poll.answerB } ({ poll.votesB } votes)</span>
       </div>
